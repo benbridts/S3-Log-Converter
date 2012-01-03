@@ -1,12 +1,12 @@
 #
 # s3_converter.py
 #
-# Tim Desjardins - (c) 2007 BlogMatrix.com
+# Copyright: Tim Desjardins - (c) 2007 BlogMatrix.com
+# Copyright: Ben Bridts - (c) 2011-2012 benbridts.be
 #
 # License: Use at your own risk, don't contact us if you have problems or for
 # support.
 #
-# $Id: $
 #
 
 import os
