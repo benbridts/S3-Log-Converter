@@ -43,7 +43,7 @@ def debug_sm( sm ) :
 #
 # this regex was built using Pyreb
 #
-split_re = '[\w\:\-_\#\$\%\@]*\s(?P<uri>.+?)\s(?P<date>\[\d\d/\w\w\w/\d\d\d\d:\d\d:\d\d.+\])\s(?P<ip>[\d\.\w]+)\s(?:\w+\s\w+\s[\w\.\d]+)\s(?P<file_name>[\w\d\.\-_/]+)\s\"(?P<get>[\w\d\.\-_ /]*)\"\s(?P<status>\d\d\d)\s\-\s(?P<bytes1>\d+)\s(?P<bytes2>[\d\-]+)\s(?P<bytes3>[\d\-]+)\s(?P<bytes4>[\d\-]+)\s"(?P<url>.*)"\s"(?P<user_agent>.*)"$'
+split_re = '[\w\:\-_\#\$\%\@]*\s(?P<uri>.+?)\s(?P<date>\[\d\d/\w\w\w/\d\d\d\d:\d\d:\d\d.+\])\s(?P<ip>[\d\.\w]+)\s(?P<requester>[\-\w]+)\s(?:\w+\s[\w\.\d]+)\s(?P<file_name>[\w\d\.\-_/%]*)\s\"(?P<get>[\w\d\.\-_\S /]*)\"\s(?P<status>\d\d\d)\s[\-\w]+\s(?P<bytes1>[\d\-]+)\s(?P<bytes2>[\d\-]+)\s(?P<bytes3>[\d\-]+)\s(?P<bytes4>[\d\-]+)\s"(?P<url>.*)"\s"(?P<user_agent>.*)"$'
 
 split_rex = re.compile( split_re, re.VERBOSE )
 
@@ -51,6 +51,8 @@ def process_line( line, fout ) :
 	""" process a line, write the resulting converted line to fout. """
 	global error_count, line_count, split_rex
 	sm = split_rex.match( line )
+	line = line.rstrip( os.linesep)
+	line = line.rstrip( ' -0123456789' )
 	line_count += 1
 
 	if sm:
