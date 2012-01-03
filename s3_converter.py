@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 #
 # s3_converter.py
 #
